@@ -310,7 +310,7 @@ export default function Index() {
             { num: "15+", label: "лет на рынке" },
             { num: "3 000+", label: "клиентов" },
             { num: "100 шт.", label: "минимальный заказ" },
-            { num: "48 ч", label: "срок доставки по МО" },
+            { num: "Самовывоз", label: "п. Романовка, Всеволожский р-н, ЛО" },
           ].map((s) => (
             <div key={s.label} className="text-center">
               <p className="text-3xl font-semibold text-[hsl(var(--primary))]" style={{ fontFamily: "Oswald, sans-serif" }}>{s.num}</p>
