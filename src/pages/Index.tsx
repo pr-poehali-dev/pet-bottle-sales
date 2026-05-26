@@ -326,9 +326,8 @@ function IndexInner() {
 
       {/* STATS */}
       <section className="bg-[#1a1a1a] text-white py-12">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 gap-8">
           {[
-            { num: "15+", label: "лет на рынке" },
             { num: "3 000+", label: "клиентов" },
             { num: "100 шт.", label: "минимальный заказ" },
             { num: "Самовывоз", label: "п. Романовка, Всеволожский р-н, ЛО" },
