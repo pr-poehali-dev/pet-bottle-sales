@@ -298,10 +298,7 @@ export default function Index() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-[hsl(var(--primary))] text-white p-4 min-w-32">
-              <p className="text-2xl font-semibold" style={{ fontFamily: "Oswald, sans-serif" }}>500+</p>
-              <p className="text-xs opacity-80 mt-0.5">позиций в наличии</p>
-            </div>
+
           </div>
         </div>
       </section>
