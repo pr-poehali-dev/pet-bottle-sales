@@ -314,8 +314,8 @@ function IndexInner() {
           <div className="relative animate-fade-in">
             <div className="aspect-square bg-white rounded-sm overflow-hidden border border-[#e8e6e2]">
               <img
-                src="https://cdn.poehali.dev/projects/38873114-8b3a-4db4-9d4e-9af29a5b87e8/files/f44cd62b-3e4e-4b62-b90b-4dd3f172bd3a.jpg"
-                alt="ПЭТ бутылки"
+                src="https://cdn.poehali.dev/projects/38873114-8b3a-4db4-9d4e-9af29a5b87e8/bucket/e2568b2b-855a-4e67-bbec-2c7f7908e685.jpg"
+                alt="ПЭТ баночка"
                 className="w-full h-full object-cover"
               />
             </div>
