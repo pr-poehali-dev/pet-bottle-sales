@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import { CartProvider, useCart } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 const PRODUCTS = [
   {
@@ -187,7 +189,8 @@ const DELIVERY_ITEMS = [
 
 type Section = "Каталог" | "Доставка" | "Контакты";
 
-export default function Index() {
+function IndexInner() {
+  const { addItem, totalCount, setIsOpen } = useCart();
   const [activeSection, setActiveSection] = useState<Section>("Каталог");
   const [filterVolume, setFilterVolume] = useState("все");
   const [filterType, setFilterType] = useState("все");
@@ -235,11 +238,29 @@ export default function Index() {
             <button className="bg-[hsl(var(--primary))] text-white px-5 py-2 text-sm font-medium tracking-wide hover:opacity-90 transition-opacity">
               Запросить цены
             </button>
+            <button onClick={() => setIsOpen(true)} className="relative p-2 hover:opacity-70 transition-opacity">
+              <Icon name="ShoppingCart" size={22} />
+              {totalCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[hsl(var(--primary))] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-semibold">
+                  {totalCount}
+                </span>
+              )}
+            </button>
           </nav>
 
-          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={22} />
-          </button>
+          <div className="flex items-center gap-3 md:hidden">
+            <button onClick={() => setIsOpen(true)} className="relative p-2">
+              <Icon name="ShoppingCart" size={22} />
+              {totalCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[hsl(var(--primary))] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-semibold">
+                  {totalCount}
+                </span>
+              )}
+            </button>
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <Icon name={mobileMenuOpen ? "X" : "Menu"} size={22} />
+            </button>
+          </div>
         </div>
 
         {mobileMenuOpen && (
@@ -409,8 +430,11 @@ export default function Index() {
                   </div>
                   <p className="text-[hsl(var(--primary))] text-lg font-semibold mt-3" style={{ fontFamily: "Oswald, sans-serif" }}>{p.price}</p>
                   <p className="text-[#aaa] text-xs mt-0.5">{p.moq}</p>
-                  <button className="mt-3 w-full border border-[#1a1a1a] text-[#1a1a1a] text-xs py-2 hover:bg-[#1a1a1a] hover:text-white transition-colors tracking-wide">
-                    Запросить цену
+                  <button
+                    onClick={() => addItem({ id: p.id, name: p.name, volume: p.volume, color: p.color, price: p.price, image: p.image })}
+                    className="mt-3 w-full bg-[#1a1a1a] text-white text-xs py-2 hover:opacity-80 transition-opacity tracking-wide flex items-center justify-center gap-1.5">
+                    <Icon name="ShoppingCart" size={13} />
+                    В корзину
                   </button>
                 </div>
               </div>
@@ -542,6 +566,15 @@ export default function Index() {
           </div>
         </div>
       </footer>
+      <CartDrawer />
     </div>
+  );
+}
+
+export default function Index() {
+  return (
+    <CartProvider>
+      <IndexInner />
+    </CartProvider>
   );
 }
